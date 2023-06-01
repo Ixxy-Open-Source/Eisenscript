@@ -1,0 +1,17 @@
+{
+	"name": "com.ixxy.eisenscript",
+	"version": "0.0.1",
+	"displayName": "Eisenscript",
+	"description": "Parser for Structure Synth scripts",
+	"unity": "2021.3",
+	"author": {
+		"name": "Andy Baker and Darrel Plank",
+		"email": "andy@andybak.net",
+		"url": "https://www.andybak.net"
+	},
+	"dependencies": {
+		"com.unity.mathematics": "1.2.6"
+	},
+	"scopedRegistries": [
+	]
+}
