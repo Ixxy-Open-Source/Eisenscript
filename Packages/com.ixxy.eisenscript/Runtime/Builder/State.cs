@@ -177,13 +177,14 @@ namespace Eisenscript
                 NextAction();
             }
         }
+
         #endregion
 
         #region Debug
         public override string ToString()
         {
             var name = CurrentRule.Name ?? "<INIT>";
-            _mtxInput.Decompose(out var xlat, out var _r, out var _s);
+            var xlat = _mtxInput.GetColumn(3);
 
             if (ActionIndex == CurrentRule.Actions.Count)
             {

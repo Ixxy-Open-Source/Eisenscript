@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b1b94144b376647b6e320dc2e1b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: "set maxdepth 400\r\n\r\nr0\r\n\r\nrule r0 {\r\n  3 * { rz 120 } r1\r\n 
+    3 * { rz 120 } r2\r\n}\r\n\r\nrule r1 {\r\n  { x 1.3 rx 1.57 rz 6 ry 3 s 0.99
+    hue 0.4 sat 0.99 } r1\r\n  { s 4 } sphere\n}\r\n\r\nrule r2 {\r\n  { x -1.3 rz
+    6 ry 3 s 0.99 hue 0.4 sat 0.99 } r2\r\n  { s 4 } sphere\r\n}"
   prefab: {fileID: 954232718}
 --- !u!4 &64685271
 Transform:
@@ -166,7 +170,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &738935347
 GameObject:
@@ -441,5 +445,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

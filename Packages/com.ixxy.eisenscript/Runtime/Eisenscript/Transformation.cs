@@ -162,15 +162,15 @@ public class Transformation
                     break;
 
                 case TokenType.Rx:
-                    matrix = Matrix4x4.Rotate(Quaternion.Euler((Mathf.PI / 180) * (float)scan.NextDouble(), 0, 0)) * matrix;
+                    matrix = Matrix4x4.Rotate(Quaternion.Euler((float)scan.NextDouble(), 0, 0)) * matrix;
                     break;
 
                 case TokenType.Ry:
-                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, (Mathf.PI / 180) * (float)scan.NextDouble(), 0)) * matrix;
+                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, (float)scan.NextDouble(), 0)) * matrix;
                     break;
 
                 case TokenType.Rz:
-                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, (Mathf.PI / 180) * (float)scan.NextDouble())) * matrix;
+                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, (float)scan.NextDouble())) * matrix;
                     break;
 
                 case TokenType.S:

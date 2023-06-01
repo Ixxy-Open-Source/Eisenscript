@@ -4,31 +4,12 @@ using Eisenscript;
 
 public class EisenscriptTest : MonoBehaviour
 {
-
+    [TextArea(40, 10)] public string script;
     public Transform prefab;
 
     void Start()
     {
-        TextReader input = new StringReader(@"
-set maxdepth 40
-
-r0
-
-rule r0 {
-  3 * { rz 120 } r1
-  3 * { rz 120 } r2
-}
-
-rule r1 {
-  { x 1.3 rx 1.57 rz 6 ry 3 s 0.99 hue 0.4 sat 0.99 } r1
-  { s 4 } sphere
-}
-
-rule r2 {
-  { x -1.3 rz 6 ry 3 s 0.99 hue 0.4 sat 0.99 } r2
-  { s 4 } sphere
-}
-");
+        TextReader input = new StringReader(script);
         var builder = new SSBuilder();
         Vector3 pos = Vector3.zero;
         Quaternion rot = Quaternion.identity;
@@ -36,16 +17,20 @@ rule r2 {
         builder.DrawEvent += (sender, args) =>
         {
             var thing = Instantiate(prefab);
-            args.Matrix.Decompose(out Vector3 t, out Quaternion r, out Vector3 s);
-            pos += t;
+            Vector3 t = args.Matrix.GetColumn(3);
+            Quaternion r = args.Matrix.rotation;
+            Vector3 s = args.Matrix.lossyScale;
+            pos = t;
             rot *= r;
-            scale += s;
+            scale.Scale(s);
             thing.position = pos;
             thing.rotation = rot;
             thing.localScale = scale;
-            Debug.Log($"Sender: {sender} args: {args.Type} {pos} {rot.eulerAngles} {scale} :: {args.Rgba}");
+            var mr = thing.GetComponent<Renderer>();
+            mr.material.SetColor("_Color", args.Rgba);
         };
         var errors = builder.Build(input);
+        prefab.gameObject.SetActive(false);
         foreach (var error in errors)
         {
             Debug.LogError($"Error: {error.Message}");
